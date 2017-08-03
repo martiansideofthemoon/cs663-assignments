@@ -2,6 +2,7 @@ function output = myHE(img)
     [h, w] = size(img);
     total = h * w;
     [counts, locations] = imhist(img);
+    % This is the grayscale map, a monotonic function
     map = zeros(256);
     cumulative = 0.0;
     for i = 1:256
