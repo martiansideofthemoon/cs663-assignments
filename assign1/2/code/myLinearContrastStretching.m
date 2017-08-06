@@ -5,7 +5,7 @@ function output = myLinearContrastStretching(img)
     [h, w] = size(img);
     for i = 1:h
         for j = 1:w
-            output(i, j) = (img(i, j) - minimum) * 256.0 / (maximum - minimum);
+            output(i, j) = (img(i, j) - minimum) * 255.0 / (maximum - minimum);
         end
     end
 end
