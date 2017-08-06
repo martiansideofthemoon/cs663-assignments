@@ -22,8 +22,7 @@ function map = getHistMap(img)
     % This is the grayscale map, a monotonic function
     map = zeros(256);
     cumulative = 0.0;
-    for i = 1:256
-        cumulative = cumulative + counts(i);
-        map(i) = 256.0 * (cumulative / total);
-    end
+    i = 1:256;
+    cumulative = cumsum(counts(i));
+    map = 256.0 * (cumulative./ total);
 end
