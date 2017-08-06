@@ -31,4 +31,3 @@ axis on, colorbar, waitforbuttonpress
 output_near = myNearestNeighborInterpolation(input);
 imshow(uint8(output_near), 'InitialMagnification', 'fit')
 axis on, colorbar, waitforbuttonpress
-
