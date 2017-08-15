@@ -1,0 +1,8 @@
+lion image 
+standard deviation for gaussian blur is 2
+scaling parameter = 3
+
+moon image
+standard deviation for gaussian blur is 3
+scaling parameter = 3
+
