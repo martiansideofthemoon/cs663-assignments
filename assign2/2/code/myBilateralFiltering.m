@@ -3,7 +3,7 @@ function output = myBilateralFiltering(img,w,sigma_spatial,sigma_intensity)
 %UNTITLED Summary of this function goes here
 %random noise to the image
 img = mat2gray(img);
-rng(s)
+
 corrupted =  img + 0.05 * randn(size(img));
 %   Detailed explanation goes here
 %computing spatial gaussian window  
