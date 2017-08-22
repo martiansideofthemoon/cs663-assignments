@@ -1,4 +1,4 @@
-function output = myPatchBasedFiltering(img, sigmaSpatial, sigmaIntensity)
+function output = myPatchBasedFiltering(img, sigmaSpatial, sigmaIntensity)%
 %sigmaSpatial = sigmaSpatial*1.1;
 %sigmaIntensity = sigmaIntensity*1.1;
 img = mat2gray(img);
