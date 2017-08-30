@@ -12,11 +12,11 @@ function output = myMeanShiftSegmentation(img, bw_color, bw_spatial, iterations)
         end
     end
 
-    for t = 1:iterations
-        for i = 1:rows
-            for j = 1:cols
+    for i = 1:rows
+        for j = 1:cols
+            spatial_exp = buildGaussKernel(index_array, index_array(i, j, :), bw_spatial_sq);
+            for t = 1:iterations
                 color_exp = buildGaussKernel(img, estimates(i, j, :), bw_color_sq);
-                spatial_exp = buildGaussKernel(index_array, [i, j], bw_spatial_sq);
                 kernel = color_exp .* spatial_exp;
                 mean_value = computeMean(img, kernel, channels);
                 estimates(i, j, :) = mean_value;
@@ -34,13 +34,12 @@ function output = buildGaussKernel(img, center, variance)
 end
 
 
-
 function output = computeMean(img, kernel, channels)
-    scaled_img = img;
+    scaled_img = double(img);
     for i = 1:channels
         scaled_img(:, :, i) = scaled_img(:, :, i) .* kernel;
     end
-    numerator = sum(sum(scaled_img, 1), 1);
+    numerator = sum(sum(scaled_img, 1), 2);
     denominator = sum(sum(kernel));
     output = numerator / denominator;
 end
