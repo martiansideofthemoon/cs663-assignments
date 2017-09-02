@@ -4,7 +4,7 @@ function output = myMeanShiftSegmentation(img, bw_color, bw_spatial, iterations)
 
     bw_color_sq = bw_color * bw_color;
     bw_spatial_sq = bw_spatial * bw_spatial;
-
+    window_size = 3 * bw_spatial;
     index_array = zeros(rows, cols, 2);
     for i = 1:rows
         for j = 1:cols
@@ -14,11 +14,20 @@ function output = myMeanShiftSegmentation(img, bw_color, bw_spatial, iterations)
 
     for i = 1:rows
         for j = 1:cols
-            spatial_exp = buildGaussKernel(index_array, index_array(i, j, :), bw_spatial_sq);
+            % Defintion of the window
+            % We are using this window size since the spatial values almost zero beyond 3*sigma
+            window_left = max(1, j - window_size);
+            window_right = min(cols, j + window_size);
+            window_top = max(1, i - window_size);
+            window_down = min(rows, i + window_size);
+            spatial_window = index_array(window_top:window_down, window_left:window_right, :);
+            color_window = img(window_top:window_down, window_left:window_right, :);
+
+            spatial_exp = buildGaussKernel(spatial_window, index_array(i, j, :), bw_spatial_sq);
             for t = 1:iterations
-                color_exp = buildGaussKernel(img, estimates(i, j, :), bw_color_sq);
+                color_exp = buildGaussKernel(color_window, estimates(i, j, :), bw_color_sq);
                 kernel = color_exp .* spatial_exp;
-                mean_value = computeMean(img, kernel, channels);
+                mean_value = computeMean(color_window, kernel, channels);
                 estimates(i, j, :) = mean_value;
             end
         end
@@ -30,7 +39,7 @@ end
 function output = buildGaussKernel(img, center, variance)
     temp1 = bsxfun(@minus, img, center);
     temp1 = sum(temp1 .^ 2, 3);
-    output = exp(-temp1 / variance);
+    output = exp(-temp1 / (2 * variance));
 end
 
 
