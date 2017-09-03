@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  3 SEP 2017 23:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  3 SEP 2017 23:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -414,7 +414,23 @@ Package footmisc Info: Declaring symbol style lamport*-robust on input line 924
 \RaggedLeftParindent=\skip54
 \RaggedRightParindent=\skip55
 \JustifyingParindent=\skip56
-) (./report.aux)
+) (./report.aux
+
+LaTeX Warning: Label `fig:result2' multiply defined.
+
+
+LaTeX Warning: Label `fig:result2' multiply defined.
+
+
+LaTeX Warning: Label `fig:result2' multiply defined.
+
+
+LaTeX Warning: Label `fig:result2' multiply defined.
+
+
+LaTeX Warning: Label `fig:result2' multiply defined.
+
+)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
@@ -429,7 +445,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count90
 \scratchdimen=\dimen107
@@ -495,159 +511,70 @@ Package ragged2e Info: ABD: executing \RaggedRight on input line 10.
 ABD: EverySelectfont initializing macros
 LaTeX Info: Redefining \selectfont on input line 10.
 
+<dx.png, id=1, 778.91pt x 651.43375pt>
+File: dx.png Graphic file (type png)
+ <use dx.png>
+Package pdftex.def Info: dx.png used on input line 28.
+(pdftex.def)             Requested size: 345.0pt x 288.53027pt.
+ [1
 
-LaTeX Warning: File `without_bin.png' not found on input line 28.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./dx.png>]
+<dy.png, id=10, 768.8725pt x 647.41875pt>
+File: dy.png Graphic file (type png)
+ <use dy.png>
+Package pdftex.def Info: dy.png used on input line 36.
+(pdftex.def)             Requested size: 345.0pt x 290.50592pt.
+ [2 <./dy.png>]
+<eigen1.png, id=14, 739.76375pt x 638.385pt>
+File: eigen1.png Graphic file (type png)
+ <use eigen1.png>
+Package pdftex.def Info: eigen1.png used on input line 45.
+(pdftex.def)             Requested size: 345.0pt x 297.72263pt.
+ [3 <./eigen1.png>] <eigen2.png, id=18, 715.67375pt x 645.41125pt>
+File: eigen2.png Graphic file (type png)
+ <use eigen2.png>
+Package pdftex.def Info: eigen2.png used on input line 54.
+(pdftex.def)             Requested size: 345.0pt x 311.13324pt.
+ [4 <./eigen2.png>] <corner_ness.png, id=22, 732.7375pt x 642.4pt>
+File: corner_ness.png Graphic file (type png)
+ <use corner_ness.png>
+Package pdftex.def Info: corner_ness.png used on input line 64.
+(pdftex.def)             Requested size: 345.0pt x 302.46716pt.
 
+[5 <./corner_ness.png>]
+<without_non_maaximal.png, id=26, 766.865pt x 654.445pt>
+File: without_non_maaximal.png Graphic file (type png)
 
-! Package pdftex.def Error: File `without_bin.png' not found.
+<use without_non_maaximal.png>
+Package pdftex.def Info: without_non_maaximal.png used on input line 73.
+(pdftex.def)             Requested size: 345.0pt x 294.42763pt.
+ [6 <./without_non_maaximal.png>]
+<with_non_maximal.png, id=30, 745.78625pt x 647.41875pt>
+File: with_non_maximal.png Graphic file (type png)
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.28 ...raphics[width=\linewidth]{without_bin.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+<use with_non_maximal.png>
+Package pdftex.def Info: with_non_maximal.png used on input line 82.
+(pdftex.def)             Requested size: 345.0pt x 299.49564pt.
+ [7 <./with_non_maximal.png>] [8] (./report.aux)
 
-
-LaTeX Warning: File `with_bin.png' not found on input line 35.
-
-
-! Package pdftex.def Error: File `with_bin.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.35 ...degraphics[width=\linewidth]{with_bin.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: File `with_bin.png' not found on input line 41.
-
-
-! Package pdftex.def Error: File `with_bin.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.41 ...degraphics[width=\linewidth]{with_bin.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: File `with_bin.png' not found on input line 47.
-
-
-! Package pdftex.def Error: File `with_bin.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.47 ...degraphics[width=\linewidth]{with_bin.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: File `with_bin.png' not found on input line 54.
-
-
-! Package pdftex.def Error: File `with_bin.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.54 ...degraphics[width=\linewidth]{with_bin.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: File `with_bin.png' not found on input line 60.
-
-
-! Package pdftex.def Error: File `with_bin.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.60 ...degraphics[width=\linewidth]{with_bin.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: File `with_bin.png' not found on input line 67.
-
-
-! Package pdftex.def Error: File `with_bin.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.67 ...degraphics[width=\linewidth]{with_bin.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
-[7] (./report.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2349 strings out of 494910
- 31717 string characters out of 6179836
- 91059 words of memory out of 5000000
- 5621 multiletter control sequences out of 15000+600000
+ 2382 strings out of 494910
+ 32286 string characters out of 6179836
+ 90098 words of memory out of 5000000
+ 5649 multiletter control sequences out of 15000+600000
  4116 words of font info for 16 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 38i,4n,23p,245b,188s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,5n,23p,245b,212s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (7 pages, 48734 bytes).
+Output written on report.pdf (8 pages, 1577408 bytes).
 PDF statistics:
- 40 PDF objects out of 1000 (max. 8388607)
- 27 compressed objects within 1 object stream
+ 50 PDF objects out of 1000 (max. 8388607)
+ 29 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
