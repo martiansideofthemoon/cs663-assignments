@@ -13,9 +13,14 @@ output = myMeanShiftSegmentation(input, 0.1, 10, 15);
 num_bins = 8;
 output_bin = round(output * num_bins) / num_bins;
 toc
-imshow(input, 'InitialMagnification', 'fit')
-axis on, colorbar, waitforbuttonpress
-imshow(output, 'InitialMagnification', 'fit')
-axis on, colorbar, waitforbuttonpress
-imshow(output_bin, 'InitialMagnification', 'fit')
-axis on, colorbar, waitforbuttonpress
+
+subplot(1,2,1) , imshow(input, 'InitialMagnification', 'fit'), title('input image'),
+axis on,colorbar
+subplot(1,2,2), imshow(output, 'InitialMagnification', 'fit'),title('output image')
+axis on,colorbar, waitforbuttonpress
+
+subplot(1,2,1) , imshow(input, 'InitialMagnification', 'fit'), title('input image'),
+axis on,colorbar
+subplot(1,2,2), imshow(output_bin, 'InitialMagnification', 'fit'),title('output image')
+axis on,colorbar, waitforbuttonpress
+
