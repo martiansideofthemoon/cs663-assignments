@@ -1,4 +1,4 @@
-function [Ix, Iy, eigen1, eigen2, score, output] = myHarrisCornerDetector(img, k, sigma, sigma_window, threshold)
+function [Ix, Iy, eigen1, eigen2, score, output, output2] = myHarrisCornerDetector(img, k, sigma, threshold)
 
     width = size(img,1);
     height = size(img,2);
@@ -7,52 +7,50 @@ function [Ix, Iy, eigen1, eigen2, score, output] = myHarrisCornerDetector(img, k
     dx = [-1 0 1; -2 0 2; -1 0 1];	 % vertical derivative mask
     dy = [-1 -2 -1; 0 0 0; 1 2 1];	 % horizontal derivative mask
 
-    Ix = conv2(img,dx);
-    Iy = conv2(img,dy);
-    Ix = imgaussfilt(Ix, sigma);
-    Iy = imgaussfilt(Iy, sigma);
 
-    Ix2 = Ix .* Ix;                          % get Ix to the power of two
-    Iy2 = Iy.* Iy;                          % get Iy to the power of two
-    Ixy = Ix .* Iy;                         %get the Ixy by multiply Ix and Iy
+    window = fspecial('gaussian', [5, 5], sigma);
 
-
-    window_size = 4;
-    offset = window_size / 2;
+    Ix = conv2(img, dx, 'same');
+    Iy = conv2(img, dy, 'same');
+    Ixx = conv2(Ix .* Ix, window, 'same');
+    Iyy = conv2(Iy .* Iy, window, 'same');
+    Ixy = conv2(Ix .* Iy, window, 'same');
 
     output = zeros(height, width, 3);
+    output2 = zeros(height, width, 3);
     for i=1:3
         output(:, :, i) = img;
+        output2(:, :, i) = img;
     end
 
-    for x = offset:width - offset,
-        for y = offset:height - offset
-            windowIx2 = Ix2(x-offset+1:x+offset,y-offset+1:y+offset);
-            windowIy2 = Iy2(x-offset+1:x+offset, y-offset+1:y+offset );
-            windowIxy = Ixy(x-offset+1:x+offset, y-offset+1:y+offset);
-            window = img(x-offset+1:x+offset,y-offset+1:y+offset);
-            % window = imgaussfilt(window, sigma_window);
+    score = zeros(width, height);
 
-            windowIx2 = window .* windowIx2;
-            windowIy2 = window .* windowIy2;
-            windowIxy = window .* windowIxy;
+    determinant = Ixx .* Iyy - Ixy .^ 2;
+    tr = Ixx + Iyy;
+    tr_by_2 = tr / 2;
+    eigen1 = tr_by_2 - ((tr_by_2 .^ 2 - determinant) .^ (0.5));
+    eigen2 = tr_by_2 + ((tr_by_2 .^ 2 - determinant) .^ (0.5));
+    score = determinant - k * (tr .^ 2);
 
-            Sxx = sum(sum(windowIx2));
-            Syy = sum(sum(windowIy2));
-            Sxy = sum(sum(windowIxy));
-            M = [ Sxx Sxy ; Sxy Syy ];
-            e = eig(M);
-            eigen1(x, y) = e(1);
-            eigen2(x, y) = e(2);
-
-            R = det(M) - k*(trace(M)^2);
-            score(x,y) = R;
-
-            if R > threshold
-                output(x, y, 1) = 0.0;
-                output(x, y, 2) = 1.0;
-                output(x, y, 3) = 0.0;
+    for i = 1:width
+        for j = 1:height
+            if score(i, j) > threshold
+                output = insertMarker(output, [j, i]);
             end
         end
     end
+
+    % Implementing non-max suppression of window size 3
+    supp_window = 3;
+    for i = 1:supp_window:width-supp_window+1
+        for j = 1:supp_window:height-supp_window+1
+            values = score(i:i+supp_window-1, j:j+supp_window-1);
+            [maximum argmax] = max(values(:));
+            [x y] = ind2sub(size(values), argmax);
+            if maximum > threshold
+                output2 = insertMarker(output2, [j+y-1, i+x-1]);
+            end
+        end
+    end
+
 end
