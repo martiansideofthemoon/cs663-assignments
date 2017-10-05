@@ -1,0 +1,20 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+%Gummi|065|=)
+\title{\textbf{CS663 \\ Assignment 4 - Q4}}
+\author{Kalpesh Krishna\\ Pranav Sankhe \\ Mohit Madan}
+\date{}
+\begin{document}
+
+\maketitle
+The function \texttt{mySVD()} accepts any matrix input. If $A = U \Sigma V^T$, and $A$ has dimensions $(m, n)$, the function will output $U$, $V$ and a vector $S$ of size $(m, 1)$ which contains the singular values of $A$ sorted in descending order. Some values of $S$ might be zero, which correspond to the remaining eigenvalues of $AA^T$.\\
+In order to align the eigenvectors correctly, we've equated $Av_i$ and $\sigma_i u_i$ (which are expected to be equal). If $||Av_i - \sigma_i u_i||_2 < t$, (t is the tolerance set to $10^{-8}$), we've reversed the sign of $v_i$.\\\\
+In the main script, the vector $S$ has been converted into the suitable $(m,n)$ format for comparison with $A$. \textbf{MATLAB report attached with this PDF}.
+
+\end{document}
