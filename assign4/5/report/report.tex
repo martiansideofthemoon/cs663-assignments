@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+\usepackage{geometry, amsmath, bm, amssymb}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\newcommand{\evector}{\boldsymbol{e}}
+\newcommand{\evone}{\boldsymbol{e_1}}
+%Gummi|065|=)
+\title{\textbf{CS663 \\ Assignment 4 - Q5}}
+\author{Kalpesh Krishna\\ Pranav Sankhe \\ Mohit Madan}
+\date{}
+\begin{document}
+
+\maketitle
+Our minimizing objective function is $J$ such that (ignoring the terms not having $\evector$),
+\begin{align*}
+J(\evector) &= -\evector^T S \evector
+\end{align*}
+We have two constraints,
+\begin{align*}
+\evector ^T \evector &= 1 \\
+\evector ^T \evone &= 0
+\end{align*}
+Writing a Lagrange multiplier equation (which we try to maximize),
+\begin{align*}
+J(\evector) &= \evector^T S \evector - \lambda (\evector ^T \evector - 1) - \mu (\evector ^T \evone)
+\end{align*}
+Taking derivative with respect to $\evector$ and equating to zero,
+\begin{align*}
+0 &= 2 S \evector - 2\lambda \evector - \mu \evone\\
+0 &= 2\evone^T S \evector - 2\lambda \evone^T \evector - \mu~\text{(Multiplying $\evone^T$ on both sides)}\\
+0 &= 2 \evone^T S^T \evector - 0 - \mu~\text{(Since S is symmetric)}\\
+0 &= 2\lambda_1 \evone^T \evector - 0 - \mu\\
+\therefore\mu &= 0 \\
+\therefore \lambda &= \evector^T S \evector\\
+\end{align*}
+Hence, once again we need $\lambda$ to be an eigenvalue and $\evector$ to be an eigenvector. Since we cannot choose the largest eigenvalue (due to $\evone^T \evector = 0$), we use the second largest eigenvalue. $\evector$ is the unit eigenvector for the second largest eigenvalue.
+\end{document}
