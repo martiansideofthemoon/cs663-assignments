@@ -1,0 +1,69 @@
+\documentclass[11pt]{article}
+\usepackage{geometry, amsmath}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+%Gummi|065|=)
+\title{\textbf{CS663 \\ Assignment 4 - Q6}}
+\author{Kalpesh Krishna\\ Pranav Sankhe \\ Mohit Madan}
+\date{}
+\begin{document}
+
+\maketitle
+\textbf{Q6 a)} We have that $A$ is a $(m, n)$ matrix. $P = A^T A$ is a $(m, m)$ matrix. Hence $y$ is a $(m, 1)$ vector. We have,
+\begin{align*}
+y^tPy &= y^t A^T A y\\
+&= (Ay)^T (Ay) \\
+&= ||Ay||_2^{2} \\
+&\geq 0
+\end{align*}
+Similarly, for $Q = AA^T$,
+\begin{align*}
+z^tQz &= z^t A A^T z\\
+&= (A^Tz)^T (A^Tz) \\
+&= ||A^Tz||_2^{2} \\
+&\geq 0
+\end{align*}
+Hence both $P$ and $Q$ are positive semi-definite. For an eigenvalue $\lambda$ and eigenvector $v$ (assume $||v||_2 = 1$),
+\begin{align*}
+\lambda v &= Pv\\
+\lambda v^T v &= v^T P v\\
+\lambda &= v^T P v \geq 0
+\end{align*}
+Hence all eigenvalues are non-negative.\\\\\\
+\textbf{Q6 b)} We have,
+\begin{align*}
+\lambda u &= Pu\\
+\lambda Au &= APu \\
+\lambda (Au) &= AA^T(Au) \\
+\lambda (Au) &= Q(Au) \\
+\end{align*}
+Hence $Au$ is an eigenvector for $Q$, with the same eigenvalue. Similarly,
+\begin{align*}
+\mu v &= Qv\\
+\mu A^Tv &= A^TQv \\
+\mu (A^Tv) &= A^TA(A^Tv) \\
+\mu (A^Tv) &= P(A^Tv) \\
+\end{align*}
+Hence $A^Tv$ is an eigenvector for $P$ with same eigenvalue. $u$ is a $(n, 1)$ sized vector and $v$ is a $(m, 1)$ sized vector.\\\\\\
+\textbf{Q6 c)} We have,
+\begin{align*}
+& &\mu v_i &= Qv_i~\text{(definition of eigenvector)}\\
+&\Rightarrow &\mu v_i &= AA^Tv_i\\
+& &Au_i &= \frac{1}{||A^Tv_i||}A(A^Tv_i)\\
+&\Rightarrow & &= \frac{\mu}{||A^Tv_i||}v_i = \gamma_iv_i\\
+\end{align*}
+Clearly, $\gamma_i \geq 0$ since $\mu \geq 0$ and $||A^Tv_i|| \geq 0$.\\\\\\
+\textbf{Q6 d)} From the previous analysis we have,
+\begin{align*}
+&& Au_i &=  \gamma_iv_i\\
+&\Rightarrow & A[u_1 u_2 ... u_m] &=  [\gamma_1v_1 \gamma_2v_2 ... \gamma_mv_m]\\
+&\Rightarrow & AV &=  U \Gamma \\
+&\Rightarrow & A &=  U \Gamma V^{-1}\\
+&\Rightarrow & A &=  U \Gamma V^{T}~\text{since $V$ is orthonormal}\\
+\end{align*}
+Hence we show the existence of SVD. In the case $m > n$, the last few $\gamma_i$ are zero. In the case $n > m$, the remaining $u_i$ can be formed using Gram Schmidt process.
+\end{document}
