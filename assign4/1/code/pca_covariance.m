@@ -8,13 +8,16 @@ function [signals,PC,V] = pca_covariance(data)
 	data = data - repmat(mn,1,N);
 	
 	% calculate the covariance matrix
-	covariance = 1 / (N-1) * data * data’;
+	L = 1 / (N-1) * data’ * data  ;
 
 
 	%PC - each column is a PC and V - Mx1 matrix of variances
-	[PC, V] = eig(covariance);
+	[PC, V] = eig(L);
 	% extract diagonal of matrix as vector
+	PC = data*PC; 
+	
 	V = diag(V);
+	
 	% sort the variances in decreasing order
 	[junk, rindices] = sort(-1*V);
 	V  = V(rindices);
