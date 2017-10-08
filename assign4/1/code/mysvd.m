@@ -11,12 +11,7 @@ function [signals,eigenfaces,m,A] = mysvd(X,k)
 	end
 
 	[U S V] = svd(double(X)); %%  produces a diagonal matrix S of the same dimension as X, with nonnegative diagonal elements in decreasing order, and unitary matrices U and V 
-    eigenfaces = U(:,1:k); %% since U will give me those eigen vectors corresponding to k largest eigen values
-
-	signals = [];
-	for i = 1 : size(eigenfaces,2)
-		temp = eigenfaces' * A(:,i);
-		signals = [signals temp];
-	end
+    eigenfaces = U(:,1:k); %% since U will give me those eigen vectors corresponding to k largest eigen values	
+	signals = eigenfaces.'*A;
 
 end

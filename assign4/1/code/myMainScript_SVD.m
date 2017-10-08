@@ -46,24 +46,18 @@ for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]
 			projtestimg = eigenfaces'*temp; % projection of test image onto the facespace
 		
 			euclide_dist = [ ];
-			for l=1 : size(eigenfaces,2)
+			for l=1 : size(signals,2)
 			    temp = (norm(projtestimg-signals(:,l)))^2;
 			    euclide_dist = [euclide_dist temp];
             end
             [temp recognized_index] = min(euclide_dist);
 			euclide_dist_min = [euclide_dist_min temp]; 
             recognized_index;
-            subject = 0;
-            if mod(recognized_index,6) == 0 
-                subject =  fix(recognized_index/6);
-            else
-                subject =  fix(recognized_index/6);
-            end
-			if subject == i
-				count = count + 1;                            
-			end 	
-			no = mod( recognized_index , 6 );                                           %index of the face of a particular subject
-			recognized_img = strcat('s',int2str(subject),'_',int2str(no),'.pgm');	
+            subject = ceil(recognized_index/6);
+            
+            if subject == i
+            	count = count + 1; 
+			end
         end
         cd ..
     end

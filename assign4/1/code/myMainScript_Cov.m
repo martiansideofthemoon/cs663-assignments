@@ -3,9 +3,9 @@
 tic;
 PC = [1,2,3,5,10,15,20,30,50,75,100,150,170];
 Rrate = [];
-datasetPath = ''
+datasetPath = 'att_faces';
 for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]	
-
+    
 	%% Training 
     cd ../..
 	cd(datasetPath);
@@ -26,7 +26,7 @@ for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]
 
 	cd ..  % coming out of att_faces 
 	cd '1/code/' 
-	[eigenfaces,signals,A,m] = pca_covariance(X,k); %% function for projecting the images on the k largest eigenvectors
+	[L_eig_vec, signals,A,m] = pca_covariance(X,k); %% function for projecting the images on the k largest eigenvectors
 
 	%% testing
 	cd ../..
@@ -42,27 +42,22 @@ for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]
 			[r c] = size(test_image);
 			temp = reshape(test_image',r*c,1); 
 			temp = double(temp)-m; 
-			projtestimg = eigenfaces'*temp; % projection of test image onto the facespace
+			projtestimg = L_eig_vec.'*temp; % projection of test image onto the facespace
 		
 			euclide_dist = [ ];
-			for l=1 : size(eigenfaces,2)
+			for l=1 : size(signals,2)
 			    temp = (norm(projtestimg-signals(:,l)))^2;
 			    euclide_dist = [euclide_dist temp];
             end
             [temp recognized_index] = min(euclide_dist);
 			euclide_dist_min = [euclide_dist_min temp]; 
             recognized_index;
-            subject = 0;
-            if mod(recognized_index,6) == 0 
-                subject =  fix(recognized_index/6);
-            else
-                subject =  fix(recognized_index/6);
-            end
-			if subject == i
-				count = count + 1;                            
-			end 	
-			no = mod( recognized_index , 6 );                                           %index of the face of a particular subject
-			recognized_img = strcat('s',int2str(subject),'_',int2str(no),'.pgm');	
+            
+            subject = ceil(recognized_index/6);
+            
+            if subject == i
+            	count = count + 1; 
+			end
         end
         cd ..
     end
