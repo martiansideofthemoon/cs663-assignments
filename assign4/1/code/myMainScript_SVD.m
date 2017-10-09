@@ -41,7 +41,8 @@ for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]
 			filename = strcat(num2str(j),'.pgm');
 			test_image = imread(filename);
 			[r c] = size(test_image);
-			temp = reshape(test_image',r*c,1); 
+            r,c
+            temp = reshape(test_image',r*c,1); 
 			temp = double(temp)-m; 
 			projtestimg = eigenfaces'*temp; % projection of test image onto the facespace
 		
@@ -62,7 +63,7 @@ for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]
         cd ..
     end
     cd ../1/code/
-	Rrate = [Rrate count/128];
+	Rrate = [Rrate count*100/128];
 end
 
 plot(PC,Rrate)	

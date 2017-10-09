@@ -62,7 +62,7 @@ for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]
         cd ..
     end
     cd ../1/code/
-	Rrate = [Rrate count/128];
+	Rrate = [Rrate count*100/128];
 end
 
 plot(PC,Rrate)	

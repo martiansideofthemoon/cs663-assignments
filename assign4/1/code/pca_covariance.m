@@ -15,7 +15,7 @@ function [L_eig_vec,signals,A,m] = pca_covariance(X,k)
 	D = diag(D);   %extract the diagonal vector
 	[~, rindices] = sort(-1*D);
 	rindices = rindices(1:k);
-
+    
 	L_eig_vec = [];
     
 	for i = rindices 
