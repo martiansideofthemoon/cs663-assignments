@@ -41,7 +41,7 @@ for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]
 			filename = strcat(num2str(j),'.pgm');
 			test_image = imread(filename);
 			[r c] = size(test_image);
-            r,c
+            
             temp = reshape(test_image',r*c,1); 
 			temp = double(temp)-m; 
 			projtestimg = eigenfaces'*temp; % projection of test image onto the facespace

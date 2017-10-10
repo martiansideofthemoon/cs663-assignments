@@ -9,8 +9,8 @@ function [signals,eigenfaces,m,A] = mysvd(X,k)
 	    temp = double(X(:,i)) - m;
 	    A = [A temp];
     end
-    disp(size(X))
-	[U S V] = svd(double(X),'econ');  %%  produces a diagonal matrix S of the same dimension as X, with nonnegative diagonal elements in decreasing order, and unitary matrices U and V 
+    disp(size(A));
+	[U S V] = svd(double(A),'econ');  %%  produces a diagonal matrix S of the same dimension as X, with nonnegative diagonal elements in decreasing order, and unitary matrices U and V 
     eigenfaces = U(:,1:k); %% since U will give me those eigen vectors corresponding to k largest eigen values	
 	signals = eigenfaces.'*A;
 
