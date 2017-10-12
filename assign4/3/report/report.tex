@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[document]{ragged2e}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+
+\begin{document}
+
+{\textbf{CS663: Assignment 4 - Q3}}
+\vskip 0.2in
+
+Mohit Madan \\ Kalpesh Krishna \\ Pranav Sankhe 
+
+\vskip 0.5in
+Thresholding of Mean square difference is used to detect the images which are not in the database.
+
+\vskip 0.2in
+
+\textbf{Threshold method used for matching identity}
+
+\vskip 0.25in
+Mean square error in PCA - covariance method was sorted and threshold was set at the the 103th index of 120 sized array. To test for the \textbf{false positive images} threshold was applied on the images in the folder 33 to 40 and for testing the \textbf{false negative images} threshold was applied on the 128 images in first 32 folders which were used in the previous question for testing the PCA algorithm.
+\vskip
+With that threshold in action following results were obtained:
+\vskip 0.25in
+Number of False Positive images = 5 out of 32 testing images.
+\vskip
+False Positive Ratio = (32-5/32) = 0.1563.  
+\vskip 0.1in
+Number of False Negative images = 24 out of 128 testing images.
+\vskip
+False Negative Ratio = (0.8*120/128) = 0.75.
+\vskip 0.25in
+False positive images is an important criteria for face detection as images which are not in the database should not be identified. If it is occurring then our face detection system is kind of bogus.
+
+\end{document}
