@@ -4,25 +4,25 @@ tic;
 PC = [1,2,3,5,10,15,20,30,50,75,100,150,170];
 Rrate = [];
 
-for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]	
+%% Training 
+cd ../..
+cd att_faces
+X = [];
+for i = 1:32
+	folder_name = strcat('s',num2str(i));
+	cd(folder_name);
 
-	%% Training 
-    cd ../..
-	cd att_faces
-	X = [];
-	for i = 1:32
-		folder_name = strcat('s',num2str(i));
-		cd(folder_name);
-
-		for j = 1:6
-			filename = strcat(num2str(j),'.pgm');
-			img = imread(filename);
-			[r c] = size(img);
-			temp = reshape(img',r*c,1); %%reshaping the matrix
-			X = [X temp]; %% matrix of image column vectors
-		end
-		cd ..
+	for j = 1:6
+		filename = strcat(num2str(j),'.pgm');
+		img = imread(filename);
+		[r c] = size(img);
+		temp = reshape(img',r*c,1); %%reshaping the matrix
+		X = [X temp]; %% matrix of image column vectors
 	end
+	cd ..
+end
+
+for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]	
 
 	cd ..  % coming out of att_faces 
 	cd '1/code/' 
@@ -41,7 +41,6 @@ for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]
 			filename = strcat(num2str(j),'.pgm');
 			test_image = imread(filename);
 			[r c] = size(test_image);
-            r,c
             temp = reshape(test_image',r*c,1); 
 			temp = double(temp)-m; 
 			projtestimg = eigenfaces'*temp; % projection of test image onto the facespace
@@ -62,8 +61,9 @@ for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]
         end
         cd ..
     end
-    cd ../1/code/
+
 	Rrate = [Rrate count*100/128];
+    
 end
 
 plot(PC,Rrate)	
