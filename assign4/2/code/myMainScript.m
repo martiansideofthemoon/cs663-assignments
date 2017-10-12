@@ -1,61 +1,53 @@
-%% MyMainScript
+subject_indices = dir('../../CroppedYale/*yale*');
+X = [];
 
-tic;
-PC = [1,2,3,5,10,15,20,30,50,75,100,150,170];
-Rrate = [];
-datasetPath = 'CroppedYale';
-for k = [1,2,3,5,10,15,20,30,50,75,100,150,170]	
-    
-	%% Training 
-    cd ../..	
-	folders = dir(datasetPath);
-	folders = {folders.name};
-    folders = folders(3:end); 
-	cd(datasetPath);
-	X = [];
-	height = 0;
-	width = 0;
-	for i = folders
-		i = char(i);
-        files = dir(i);
-		files = {files.name};
-		files = files(3:44);
-        cd(i);
-        length(files)
-		for j = files;
-			j = char(j);
-            img = imread(j);
-			
-            [r c] = size(img);
-            width = r ;
-            height = c;
-            temp = reshape(img',r*c,1); %%reshaping the matrix
-			X = [X temp]; %% matrix of image column vectors
-		end
-		cd ..
+for i=1:38
+    img_indices = dir(strcat('../../CroppedYale/', subject_indices(i).name,'/*yale*'));
+    for j=1:60
+        image_path = strcat('../../CroppedYale/', subject_indices(i).name, '/' , img_indices(j).name);
+        I = imread(image_path);
+        [r, c] = size(I);
+        I = I(:);
+        X = [X I];
     end
-    size(X)
-	cd ..  % coming out of att_faces 
-	cd '1/code/' 
-	[signals,eigenfaces,m,A] = mysvd(X,k);  %% function for projecting the images on the k largest eigenvectors--using SVD
-
-	%% Reconstruction
-
-	pcaRecon = (eigenfaces * signals') + m;
-	pcaRecon = uint8(pcaRecon);
-	figure, imshow(pcaRecon), title('PCA Recognition');
-	waitforbuttonpress
-
-	%% display the eigenvectors
-	figure;
-	for n = 1:25
-	    subplot(2, ceil(25/2), n);
-	    evec = reshape(eigenfaces(:,n), [width height]);
-	    imshow(evector);
-	end
-
 end
 
+[m, n] = size(X);
+m = uint8(sum(X, 2)/n);
+X = X - repmat(m, [1, n]);
+X = double(X);
 
+top_comp = [2 10 20 50 75 100 125 150 175];
 
-toc;
+figure
+count = 1;
+for j = top_comp
+    [E, ~, ~] = svds(X.', j);
+    E = E(:,1:j);
+
+    V = X*W;
+    V = normc(V);
+
+    C = V;
+    eigen_coeffs_training = C.'*X;
+    
+    eigen_coeffs_1 = eigen_coeffs_training(:,1);
+    face = C*eigen_coeffs_1;
+    face = reshape(face, [r, c]);
+    K = mat2gray(face);
+    subplot(3, 3, count); imshow(K);
+    count = count + 1; 
+end
+
+figure
+[E, ~, ~] = svds(X.', 25);
+E = E(:,1:25);
+V = X*E;
+V = normc(V);
+
+for j=1:25
+    eigenface = V(:,j);
+    eigenface = reshape(eigenface, [r, c]);
+    K = mat2gray(eigenface);
+    subplot(5, 5, j); imshow(K);
+end
