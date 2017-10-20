@@ -23,8 +23,6 @@ for i=-dim:dim
         fim2(139 + i, 134 + j) = 0;
     end
 end
-% Rescaling other points in image to preserve energy
-fim2 = fim2 * (256*256) / (256*256 - dim*dim);
 absfim2 = log(abs(fim2) + 1);
 img2 = ifft2(ifftshift(fim2));
 figure
