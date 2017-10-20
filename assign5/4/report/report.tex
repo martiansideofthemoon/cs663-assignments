@@ -1,0 +1,26 @@
+\documentclass[11pt]{article}
+\usepackage{geometry, amsmath, bm, amssymb}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\newcommand{\evector}{\boldsymbol{e}}
+\newcommand{\evone}{\boldsymbol{e_1}}
+%Gummi|065|=)
+\title{\textbf{CS663 \\ Assignment 5 - Q4}}
+\author{Kalpesh Krishna\\ Pranav Sankhe \\ Mohit Madan}
+\date{}
+\begin{document}
+
+\maketitle
+\textit{Please look at matlab\_report.pdf in same folder}.\\\\
+As visible in the MATLAB report, the outputs match expectations.
+\begin{itemize}
+\item \textbf{Ideal, D = 40} - Ringing effects are clearly visible due to low cutoff frequency. Image is not very clear as several crucial elements have been removed from the Fourier Transform.
+\item \textbf{Ideal, D = 80} - Some amount of ringing is seen, but it's lesser than $D=40$. This is because side-lobes get significantly smaller as $D$ increases. Image is a lot clearer too.
+\item \textbf{Gaussian, S = 40} - Ringing absent, image seems to have undergone right amount of blur.
+\item \textbf{Gaussian, S = 80} - Ringing absent, image is sharper than $S = 40$ since more high frequency components are preserved.
+\end{itemize}
+\end{document}
