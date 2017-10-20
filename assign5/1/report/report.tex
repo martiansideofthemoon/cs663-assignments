@@ -1,0 +1,43 @@
+\documentclass[11pt]{article}
+\usepackage{geometry, amsmath, bm, amssymb}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\newcommand{\evector}{\boldsymbol{e}}
+\newcommand{\evone}{\boldsymbol{e_1}}
+%Gummi|065|=)
+\title{\textbf{CS663 \\ Assignment 5 - Q1}}
+\author{Kalpesh Krishna\\ Pranav Sankhe \\ Mohit Madan}
+\date{}
+\begin{document}
+
+\maketitle
+\section{Solution}
+From the model given in the question we have,
+\begin{align*}
+&&g_1 &= f_1 + h_2 \star f_2~~\text{and}\\
+&&g_2 &= h_1 \star f_1 + f_2 \\
+&\implies & G_1 &= F_1 + H_2F_2~~\text{and} \\
+&\implies & G_2 &= H_1 F_1 + F_2 \\
+\end{align*}
+Solving the linear equations in $F_1$ and $F_2$,
+\begin{align*}
+&&F_1 &= \frac{G_1 - H_2G_2}{1-H_1H_2}\\
+&&F_2 &= \frac{G_2 - H_1G_1}{1-H_1H_2} \\
+\end{align*}
+With some noise $n_1$ and $n_2$ we would get,
+\begin{align*}
+&&F_1 &= \frac{G_1 - H_2G_2}{1-H_1H_2} - \frac{N_1}{1-H_1H_2} + \frac{H_2N_2}{1-H_1H_2}\\
+&&F_2 &= \frac{G_2 - H_1G_1}{1-H_1H_2} - \frac{N_2}{1-H_1H_2} + \frac{H_1N_1}{1-H_1H_2}\\
+\end{align*}
+Hence we can compute $f_1$ and $f_2$ as,
+\begin{align*}
+&&f_1 &= F^{-1}(F_1)\\
+&&f_2 &= F^{-1}(F_2)\\
+\end{align*}
+\section{Issue with Solution}
+The issue with this solution is the denominator $1-H_1H_2$. $H_1$ and $H_2$ are typically blur kernels and do not amplify the images. As a result, for lower frequencies both $H_1 \rightarrow 1$ and $H_2 \rightarrow 1$. This makes the denominator $(1-H_1H_2) \rightarrow 0$, making the system ill-conditioned at lower frequencies. The DC component of frequency (average grayscale level) isn't affected by blur (due to energy conservation) and hence $H_1(0,0) = H_2(0,0) = 1$, which leads to infinite solutions for $f_1$ and $f_2$.\\Small values of $1-H_1H_2$ are also more sensitive to noise, as seen in the solution above.
+\end{document}
