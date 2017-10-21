@@ -9,7 +9,7 @@ absfim = log(abs(fim) + 1);
 figure
 subplot(1,2,1)
 % Original unpadded image shown for convenience
-imshow(Z)
+imshow(Z/255)
 axis on, colorbar
 subplot(1,2,2)
 imshow(absfim, [1, 16])
@@ -33,7 +33,7 @@ img2 = real(ifft2(ifftshift(fim2)));
 img2_show = img2(rows/2+1:3*rows/2, cols/2+1:3*cols/2);
 figure
 subplot(1,2,1)
-imshow(img2_show)
+imshow(img2_show/255)
 axis on, colorbar
 subplot(1,2,2)
 imshow(absfim2, [1,16])
